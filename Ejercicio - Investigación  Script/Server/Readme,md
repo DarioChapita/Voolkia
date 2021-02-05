@@ -1,0 +1,126 @@
+Ejercicio - Investigación / Script
+
+    A la hora de encarar la premisa solicitada, se me ocurrio realizar dos rutas, 
+    en donde una se consulta segun el parametro requerido, en este caso el SELLER_ID,
+    al mismo tiempo escribo mi archivo .TXT para poder consultarlo mas tarde.
+
+    En la segunda ruta solo voy a poder consultar el archivo TXT, donde guardo todas 
+    las consultas que hice en la ruta anterior. 
+
+    Ambas cosas son armadas para poder leerlas con el formato JSON y de manera Sincronica.
+
+    Para hacer las pruebas en postman ingresar la ruta http://localhost:4000/api/search
+    y pasar por params el seller_id.
+
+    Para consultar el archivo de texto ingresar la ruta http://localhost:4000/read
+
+--------------------------------------------------------------
+
+Ejercicio - SQL + Propuesta
+
+Obtener para el mes 1 cuánto costaría enviar con cada carrier los envíos de
+la tabla Cantidad de envíos.
+
+    Carrier A: 
+    Para el AMBA si tenemos en cuenta que tiene una capacidad de realizar
+    10000 envios mensuales y cada envio tiene un costo de $ 10 el costo total seria 
+    de $ 100000, y si tomamos un mes de 30 dias y que para cada envio demora 3 días
+    podemos decir que el proveedor A puede repartir 333.33 pedidos por dia.
+
+    Para BS AS si tenemos en cuenta que tiene una capacidad de realizar
+    10000 envios mensuales y cada envio tiene un costo de $ 20 el costo total seria 
+    de $ 200000, y si tomamos un mes de 30 dias y que para cada envio demora 3 días
+    podemos decir que el proveedor A puede repartir 333.33 pedidos por dia.
+
+    Y por ultimo para el RESTO si tenemos en cuenta que tiene una capacidad de realizar
+    10000 envios mensuales y cada envio tiene un costo de $ 50 el costo total seria 
+    de $ 500000, y si tomamos un mes de 30 dias y que para cada envio demora 3 días
+    podemos decir que el proveedor A puede repartir 333.33 pedidos por dia.
+
+    Carrier B: 
+    Para el AMBA si tenemos en cuenta que tiene una capacidad de realizar
+    10000 envios mensuales y cada envio tiene un costo de $ 15 el costo total seria 
+    de $ 150000, y si tomamos un mes de 30 dias y que para cada envio demora 3 días
+    podemos decir que el proveedor A puede repartir 333.33 pedidos por dia.
+
+    Para BS AS si tenemos en cuenta que tiene una capacidad de realizar
+    10000 envios mensuales y cada envio tiene un costo de $ 19 el costo total seria 
+    de $ 190000, y si tomamos un mes de 30 dias y que para cada envio demora 3 días
+    podemos decir que el proveedor A puede repartir 333.33 pedidos por dia.
+
+    Y por ultimo para el RESTO si tenemos en cuenta que tiene una capacidad de realizar
+    10000 envios mensuales y cada envio tiene un costo de $ 55 el costo total seria 
+    de $ 550000, y si tomamos un mes de 30 dias y que para cada envio demora 3 días
+    podemos decir que el proveedor A puede repartir 333.33 pedidos por dia.
+
+    Carrier C: 
+    Para el AMBA si tenemos en cuenta que tiene una capacidad de realizar
+    10000 envios mensuales y cada envio tiene un costo de $ 20 el costo total seria 
+    de $ 200000, y si tomamos un mes de 30 dias y que para cada envio demora 3 días
+    podemos decir que el proveedor A puede repartir 333.33 pedidos por dia.
+
+    SI SE DESEAN HACER TODOS LOS ENVIOS CON UN SOLO PROVEEDOR, NOS ENCONTRARIAMOS
+    CON UN PROBLEMA EXPONENCIAL, YA QUE EL VOLUMEN MENSUAL DE ENVIOS ES MAYOR A LA
+    CAPACIDAD DE CADA PROVEEDOR, Y LA SUMA DE LOS TRES NO LLEGA A CUMPLIR CON EL 
+    VOLUMEN TOTAL DE OPERACIONES, EN LAS TRES ERGIONES DETALLADAS.
+
+¿Que propuesta harías para el mes 1 considerando un presupuesto de
+$3.000.000?
+
+    Lo mas logico para este caso seria aumentar, ya sea la capacidad de cada proveedor, 
+    o sumar mas proveedores, si contamos con un presupuesto de $ 3000000 y teniendo un 
+    promedio de AMBA de $ 15, BS AS $ 19.50 y RESTO $ 52.50 por viaje podríamos agregarle 
+    al proveedor A 17000 unid mas de envios mensuales para la zona de Amba con un costo 
+    unitario de $ 15 (gana cinco más x viaje), agregarle al proveedor B 30000 unid mas de
+    envios mensuales para la zona de Amba con un costo 
+    unitario de $ 19.50 (gana $4.50 más x viaje) y agregar las 40000 unidades que nos 
+    quedan del RESTO entre los tres a razon de $ 52.50 cada viaje. 
+    De esta manera respetamos el presupuesto (Costo total $ 2.960.000), pero a niveles
+    practicos seria muy engorroso y complicado de implmentar para las empresas de manera
+    rapida, ya que nuestro problema es exponencial. Lo mejor seria incluir a varios proveedores 
+    en las distintas regiones que tenemos que cubrir.
+
+¿Qué queries realizaste?
+
+
+
+
+
+
+
+--------------------------------------------------------------
+
+Lectura y comprensión Script básico grails
+● A tu entender, que se busca obtener como output del script?
+
+En este primer script lo que se realiza es la capturade datos de un paquete determinado
+en este caso el numero: 27528954729, trae todos los movimiento tipo como cuando haces el trackeo
+de una compra, Sucursal, fecha, y el movimiento en gral.
+
+--------------------------------------------------------------
+
+Script básico bash
+● A tu entender, que se busca obtener como output del script?
+
+    Se va a obtener todaslas direcciones guardadas de cada usuario, en este caso son seis.
+
+● Podrías detallar que se hace en cada línea del script?
+
+    #!/bin/bash
+    // users id tiene los seis id, uno por cliente.
+    users_id=(71665538 66146765 132961968 15096445 172753273 54152646)
+    // ciclo for para recorrer los id y traerse las direcciones 
+    for users_id in ${users_id[*]}
+    do
+        // Por cada ID de Usuario muestro las preferencias
+        curl=$(curl -s " api.mercadolibre.com/users/$users_id/shipping_preferences " | jq -c
+    '.services')
+        echo "$users_id: $curl"
+    done
+
+● Cuántas líneas se imprimen como output?
+
+    Se imprimen 6 lineas, una por cada usuario
+
+
+
