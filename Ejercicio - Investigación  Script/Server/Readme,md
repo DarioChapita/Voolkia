@@ -1,5 +1,9 @@
 Ejercicio - Investigación / Script
 
+Desde la carpeta Server hacer un NPM INSTALL para las dependencias, luego desde la terminal 
+correr el comando MODEMON INDEX.JS, si quiere puede escucharlo en el puerto 400 en su 
+browser.
+
     A la hora de encarar la premisa solicitada, se me ocurrio realizar dos rutas, 
     en donde una se consulta segun el parametro requerido, en este caso el SELLER_ID,
     al mismo tiempo escribo mi archivo .TXT para poder consultarlo mas tarde.
