@@ -86,11 +86,18 @@ $3.000.000?
 
 ¿Qué queries realizaste?
 
+Tambien podriamos decir que dependiendo de si se cumple o nó la premisa de que se debe completar el total de envios mensuales
+podriamos decir que no hay parametros posibles para cumplir con la meta. Pero todo va a depender del punto de vista y de que se
+quiere hacer.
+El siguiente ejemplo se puede usar para cada carrier y cada zona
 
+"SELECT Carrier.Capacity * Costos.Costo FROM Costos
 
+INNER JOIN Costos
 
+ON (Carrier.CarrierID = Costos.CarrierID)
 
-
+WHERE Costos.Zona = 'AMBA'"
 
 --------------------------------------------------------------
 
