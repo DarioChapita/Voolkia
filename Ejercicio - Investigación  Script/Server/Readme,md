@@ -22,6 +22,8 @@ browser.
 
 Ejercicio - SQL + Propuesta
 
+Es un problema de Programcion lineal, abria que calcular la funcion objetivo y luego las restricciones.
+
 Obtener para el mes 1 cuánto costaría enviar con cada carrier los envíos de
 la tabla Cantidad de envíos.
 
